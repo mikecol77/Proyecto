@@ -1,81 +1,76 @@
-# Restaurante La Esquina
+MANUAL TÉCNICO
 
-Este proyecto es una aplicación web para el restaurante "La Esquina". La aplicación permite a los usuarios autenticarse, generar menús para los días sábado y domingo, y actualizar el inventario de ingredientes del restaurante.
+Introducción
+Este manual técnico describe el funcionamiento de la aplicación web "Restaurante La Esquina", desarrollada en Python utilizando el framework Flask. La aplicación permite a los usuarios autenticarse, generar menús para los días sábado y domingo, y actualizar el inventario de ingredientes del restaurante.
 
-## Características
+Requisitos del Sistema
+•	Python 3.x
+•	Flask 2.x
+•	Navegador web compatible (Chrome, Firefox, Edge)
+Instalación
+•	Se deben instalar las respectivas dependencias
 
-- **Autenticación de Usuarios**: Solo los usuarios con credenciales correctas pueden acceder a la aplicación.
-- **Generación de Menús**: Permite generar menús aleatorios para los días sábado y domingo.
-- **Gestión de Inventario**: Permite agregar ingredientes al inventario.
 
-## Requisitos
+•	Ejecutar la aplicación 
 
-- Python 3.x
-- Flask
 
-## Instalación
+Estructura del código
+•	app = Flask(__name__): Inicializa la aplicación Flask.
+•	app.secret_key = 'supersecretkey': Clave secreta para la gestión de sesiones.
+•	USUARIO_PERMITIDO y CONTRASENA_PERMITIDA: Credenciales permitidas para iniciar sesión.
+•	inventario: Diccionario que almacena el inventario inicial de ingredientes.
+Funciones principales
+verificar_credenciales(usuario, contrasena):
+•	Verifica las credenciales de inicio de sesión.
+•	Parámetros: usuario (str), contrasena (str).
+•	Retorna: True si las credenciales son correctas, False en caso contrario.
 
-1. Clona este repositorio:
-    ```sh
-    git clone https://github.com/tu_usuario/tu_repositorio.git
-    ```
-2. Navega al directorio del proyecto:
-    ```sh
-    cd tu_repositorio
-    ```
-3. Instala las dependencias necesarias:
-    ```sh
-    pip install Flask
-    ```
 
-## Uso
+generar_menu_sabado():
+•	Genera y retorna un menú aleatorio para el sábado.
+•	Sin parámetros.
+generar_menu_domingo():
+•	Genera y retorna un menú aleatorio para el domingo.
+•	Sin parámetros.
+actualizar_inventario(ingrediente, cantidad):
+•	Actualiza el inventario con un nuevo ingrediente o incrementa la cantidad de uno existente.
+•	Parámetros: ingrediente (str), cantidad (int).
+•	Retorna: Inventario actualizado.
+Rutas de la Aplicación
+'/' (home):
+•	Ruta principal de la aplicación.
+•	Métodos: GET, POST.
+•	Muestra un formulario de inicio de sesión.
+'/inicio' (inicio):
+•	Ruta de inicio después de la autenticación.
+•	Métodos: GET, POST.
+•	Muestra opciones para generar menús y agregar ingredientes al inventario.
+'/menu_sabado' (menu_sabado):
+•	Genera y muestra el menú del sábado.
+•	Método: POST.
+'/menu_domingo' (menu_domingo):
+•	Genera y muestra el menú del domingo.
+•	Método: POST.
+'/agregar_ingrediente' (ruta_agregar_ingrediente):
+•	Permite agregar un ingrediente al inventario.
+•	Método: POST.
 
-1. Ejecuta la aplicación:
-    ```sh
-    python nombre_del_archivo.py
-    ```
-2. Abre tu navegador web y navega a `http://127.0.0.1:5000/`.
 
-## Rutas Principales
 
-- `/`: Página de inicio de sesión.
-- `/inicio`: Página principal después de iniciar sesión, donde se pueden generar los menús y actualizar el inventario.
-- `/menu_sabado`: Genera y muestra el menú del sábado.
-- `/menu_domingo`: Genera y muestra el menú del domingo.
-- `/agregar_ingrediente`: Permite agregar un ingrediente al inventario.
 
-## Ejemplos de Uso
+Templates
+Los templates están incrustados directamente en las rutas utilizando render_template_string de Flask. Se utiliza Bootstrap para el diseño de la interfaz de usuario.
+Ejecución
+Iniciar la aplicación:
+•	Ejecutar el script app.py.
+•	La aplicación estará disponible en http://127.0.0.1:5000/.
+Inicio de sesión:
+•	Ingresar el usuario Michael y la contraseña Proyecto777.
+Generación de Menús:
+•	En la página de inicio, seleccionar la opción para generar menús de sábado o domingo.
+Actualización de Inventario:
+•	Completar el formulario para agregar un nuevo ingrediente y su cantidad.
+Seguridad
+•	Gestión de Sesiones: Utiliza session para mantener el estado de autenticación.
+•	Clave Secreta: Definida en app.secret_key para la gestión segura de sesiones.
 
-### Iniciar Sesión
-
-1. Ingresa el nombre de usuario y la contraseña permitidos:
-    - **Usuario**: Michael
-    - **Contraseña**: Proyecto777
-
-2. Haz clic en "Iniciar Sesión".
-
-### Generar Menús
-
-- Desde la página principal, selecciona "Generar Menús del Sábado" o "Generar Menús del Domingo" para obtener un menú aleatorio.
-
-### Actualizar Inventario
-
-- En la página principal, llena los campos "Ingrediente" y "Cantidad" y haz clic en "Agregar al Inventario" para actualizar el inventario.
-
-## Estructura del Código
-
-- `app = Flask(__name__)`: Inicializa la aplicación Flask.
-- `USUARIO_PERMITIDO` y `CONTRASENA_PERMITIDA`: Credenciales de usuario.
-- `inventario`: Diccionario que almacena el inventario inicial.
-- `verificar_credenciales`: Función para verificar las credenciales de inicio de sesión.
-- `generar_menu_sabado` y `generar_menu_domingo`: Funciones para generar los menús de sábado y domingo.
-- `actualizar_inventario`: Función para actualizar el inventario.
-- Rutas de la aplicación (`home`, `inicio`, `menu_sabado`, `menu_domingo`, `agregar_ingrediente`): Definen las distintas páginas y funcionalidades de la aplicación.
-
-## Contribuciones
-
-Las contribuciones son bienvenidas. Si deseas contribuir, por favor realiza un fork del repositorio y crea un pull request.
-
-## Licencia
-
-Este proyecto está bajo la Licencia MIT.
